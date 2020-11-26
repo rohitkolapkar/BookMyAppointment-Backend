@@ -10,15 +10,23 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class BusinessServiceImpl {
+public class BusinessServiceImpl implements BusinessService{
 
     @Autowired
     BusinessRepository repository;
+    @Autowired
+    NotificationService notificationService;
+    @Autowired
+    
 
-    BaseResponse<BusinessEntity> saveBusinessDetail(HttpServletRequest request, BusinessEntity business){
+    public BaseResponse<BusinessEntity> saveBusinessDetail(HttpServletRequest request, BusinessEntity business){
 
         BaseResponse<BusinessEntity> baseResponse = new BaseResponse<>();
         business = repository.save(business);
+        //if(business)
+        //
+        
+        
         baseResponse.setResponseObject(business);
         baseResponse.setStatus(CommonConstants.SUCCESS);
         baseResponse.setReasonText("Business Added successfully");

@@ -30,5 +30,23 @@ public class BusinessEntity implements Serializable{
 
     @Column(name = "bu_id")
     private Integer buId;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getBuId() {
+		return buId;
+	}
+
+	public void setBuId(Integer buId) {
+		this.buId = buId;
+	}
+	
+	
 }
 
