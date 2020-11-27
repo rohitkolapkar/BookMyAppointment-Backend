@@ -46,61 +46,10 @@ public class CommonConstants {
 	
 	public static final String FILE_NOT_FOUND = "File not found";
 	
-	// Institute Constant
-	public static final String PRODUCT_EVENT_NAME = "Product Controller";
-	public static final String PRODUCT_MODULE_NAME = "Product";
+	public static final String BCC_mail = "swapkolapkar@gmail.com";
+	public static final String Business_Registration_Subject = "Registration Success ";
+	public static final String Business_Registration_Body = "Thanks for connecting with us.";
 
-	public static final String GET_PRODUCT_ENTITY_NAME = "GET";
-	public static final String GET_PRODUCT_ENTITY_ACTION_NAME = "Get Product";
-
-	public static final String SAVE_PRODUCT_ENTITY_NAME = "ADD";
-	public static final String SAVE_PRODUCT_ENTITY_ACTION_NAME = "Save Product or Bulk Product";
-
-	public static final String UPDATE_PRODUCT_ENTITY_NAME = "UPDATE";
-	public static final String UPDATE_PRODUCT_ENTITY_ACTION_NAME = "Update Product";
-
-	public static final String DELETE_PRODUCT_ENTITY_NAME = "DELETE";
-	public static final String DELETE_PRODUCT_ENTITY_ACTION_NAME = "Delete Product";
-	
-	
-	public static final String INSTITUTE_EVENT_NAME = "Institute Controller";
-	public static final String INSTITUTE_MODULE_NAME = "Institute";
-
-	public static final String GET_INSTITUTE_ENTITY_NAME = "GET";
-	public static final String GET_INSTITUTE_ENTITY_ACTION_NAME = "Get Institute";
-
-	public static final String SAVE_INSTITUTE_ENTITY_NAME = "ADD";
-	public static final String SAVE_INSTITUTE_ENTITY_ACTION_NAME = "Save Single or Bulk Party";
-
-	public static final String UPDATE_INSTITUTE_ENTITY_NAME = "UPDATE";
-	public static final String UPDATE_INSTITUTE_ENTITY_ACTION_NAME = "Update Institute";
-
-	public static final String DELETE_INSTITUTE_ENTITY_NAME = "DELETE";
-	public static final String DELETE_INSTITUTE_ENTITY_ACTION_NAME = "Delete Institute";
-	
-	public static final String ENQUIRY_EVENT_NAME = "StudentEnquiryController";
-	public static final String ENQUIRY_MODULE_NAME = "StudentEnquiry";
-	public static final String SAVE_ENQUIRY_ENTITY_ACTION_NAME = "ADD";
-	public static final String SAVE_ENQUIRY_ENTITY_NAME = "Save Enquiry";
-	public static final String GET_ENQUIRY_ENTITY_NAME = "GET";
-	public static final String GET_ENQUIRY_ENTITY_ACTION_NAME ="Get Enquiry";
-	
-	
-	//User 
-	public static final String ADMIN_EVENT_NAME = "Admin User controller";
-	public static final String ADMIN_MODULE_NAME = "Admin";
-
-	public static final String GET_ADMIN_EVENT_NAME = "GET";
-	public static final String GET_ADMIN_ENTITY_ACTION_NAME = "Get User";
-
-	public static final String SAVE_ADMIN_ENTITY_NAME = "ADD";
-	public static final String SAVE_ADMIN_ENTITY_ACTION_NAME = "Save User";
-
-	public static final String UPDATE_ADMIN_ENTITY_NAME = "UPDATE";
-	public static final String UPDATE_ADMIN_ENTITY_ACTION_NAME = "Update User";
-
-	public static final String DELETE_ADMIN_ENTITY_NAME = "DELETE";
-	public static final String DELETE_ADMIN_ENTITY_ACTION_NAME = "Delete User";
 		
 	public static final String APPLICATIONID_FCADMIN = "11155";
 }

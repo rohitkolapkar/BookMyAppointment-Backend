@@ -31,8 +31,19 @@ public class BusinessEntity implements Serializable{
     @Column(name = "bu_id")
     private Integer buId;
 
+	@Column(name = "business_email")
+    private String businessEmail;
+
+	@Column(name = "business_name")
+	private String businessName;
+
+
 	public Integer getId() {
 		return id;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
 	public void setId(Integer id) {
@@ -46,7 +57,21 @@ public class BusinessEntity implements Serializable{
 	public void setBuId(Integer buId) {
 		this.buId = buId;
 	}
-	
-	
+
+	public String getBusinessEmail() {
+		return businessEmail;
+	}
+
+	public void setBusinessEmail(String businessEmail) {
+		this.businessEmail = businessEmail;
+	}
+
+	public String getBusinessName() {
+		return businessName;
+	}
+
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
+	}
 }
 

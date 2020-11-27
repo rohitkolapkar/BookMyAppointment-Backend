@@ -26,9 +26,9 @@ public class BusinessController {
     @Autowired
     BusinessService service;
 
-    @PostMapping("/{productId}")
+    @PostMapping()
     public ResponseEntity<BaseResponse<BusinessEntity>> saveBusinessDetail(HttpServletRequest request,
-                                                                           @RequestBody BusinessEntity business, @PathVariable int productId) {
+                                                                           @RequestBody BusinessEntity business) {
         BaseResponse<BusinessEntity> businessonResponse = new BaseResponse<BusinessEntity>();
 
         ResponseEntity<BaseResponse<BusinessEntity>> response = null;
