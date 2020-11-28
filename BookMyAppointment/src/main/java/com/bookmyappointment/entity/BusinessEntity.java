@@ -37,6 +37,9 @@ public class BusinessEntity implements Serializable{
 	@Column(name = "business_name")
 	private String businessName;
 
+	@Column(name = "mobile")
+	private String mobile;
+
 
 	public Integer getId() {
 		return id;
@@ -72,6 +75,14 @@ public class BusinessEntity implements Serializable{
 
 	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 }
 
