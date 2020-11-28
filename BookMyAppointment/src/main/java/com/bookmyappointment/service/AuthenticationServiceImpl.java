@@ -14,8 +14,6 @@ import java.util.Random;
 @Service
 public class AuthenticationServiceImpl implements  AuthenticationService {
 
-    @Autowired
-    CommonConstants constants;
 
     @Autowired
     AuthenticationRepository repository;
