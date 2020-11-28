@@ -22,7 +22,6 @@ public class BusinessServiceImpl implements BusinessService{
     @Autowired
     AuthenticationService authService;
 
-
 /*
     @Autowired
     AuthenticationEntity authenticationEntity;*/
@@ -53,7 +52,7 @@ public class BusinessServiceImpl implements BusinessService{
         notification.setUserName(business.getBusinessName());
         notification.setBccmail(CommonConstants.BCC_mail);
         notification.setSubject(CommonConstants.Business_Registration_Subject);
-        String MailBody = CommonConstants.Business_Registration_Body + "Login with following Detail \n\n "+ "UserName"+authentication.getResponseObject().getEmail()+"\n\n password : "+ authentication.getResponseObject().getPassword();
+        String MailBody = CommonConstants.Business_Registration_Body + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
         notification.setBody(MailBody);
         notificationContoller.saveNotification(request,notification);
 

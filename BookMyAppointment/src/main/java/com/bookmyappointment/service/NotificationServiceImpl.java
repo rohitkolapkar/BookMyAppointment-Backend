@@ -80,11 +80,17 @@ public class NotificationServiceImpl implements NotificationService {
                     Message.RecipientType.TO,
                     InternetAddress.parse(notification.getToMail())
             );
-            
+            //cc
             if(null != notification.getCcMail())
             message.setRecipients(
                     Message.RecipientType.CC,
                     InternetAddress.parse(notification.getCcMail())
+            );
+            //bcc
+            if(null != notification.getBccmail())
+            message.setRecipients(
+                    Message.RecipientType.BCC,
+                    InternetAddress.parse(notification.getBccmail())
             );
             
             message.setSubject(notification.getSubject());
