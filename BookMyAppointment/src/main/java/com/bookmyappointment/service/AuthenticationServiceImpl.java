@@ -35,7 +35,32 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
 
     @Override
     public BaseResponse<AuthenticationEntity> AuthenticateUser(HttpServletRequest request, AuthenticationEntity authentication) {
-        return null;
+        BaseResponse<AuthenticationEntity> baseResponse = new BaseResponse<>();
+        AuthenticationEntity authObjDB = new AuthenticationEntity();
+        authObjDB = repository.findByEmail(authentication.getEmail());
+
+        if(null != authObjDB){
+            if(authObjDB.getPassword() == authentication.getPassword()){
+                baseResponse.setResponseObject(authObjDB);
+                baseResponse.setStatus(CommonConstants.SUCCESS);
+                baseResponse.setReasonText("User Successfully Authenticated  ");
+                baseResponse.setReasonCode("200");
+            }
+            else{
+                baseResponse.setResponseObject(authentication);
+                baseResponse.setStatus(CommonConstants.FAIL);
+                baseResponse.setReasonText("UserName or Password not match");
+                baseResponse.setReasonCode("400");
+            }
+        }
+        else{
+            baseResponse.setStatus(CommonConstants.FAIL);
+            baseResponse.setReasonText("User Not Found  ");
+            baseResponse.setReasonCode("400");
+        }
+
+
+        return baseResponse;
     }
 
     private static char[] generatePassword(int length) {

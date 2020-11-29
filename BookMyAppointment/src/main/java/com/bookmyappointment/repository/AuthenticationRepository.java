@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuthenticationRepository extends CrudRepository<AuthenticationEntity, Integer> {
+    AuthenticationEntity findByEmail(String email);
 }
