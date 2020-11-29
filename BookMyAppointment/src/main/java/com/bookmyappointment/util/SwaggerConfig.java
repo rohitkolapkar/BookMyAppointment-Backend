@@ -33,7 +33,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("BookMyAppointment")
                 .description("Use this documentation as a reference how to interact with app's API")
-                .contact(new Contact("Dev-Team", "https://finxpert.org/", "dev@mailbox"))
+                .contact(new Contact("Dev-Team", "https://github.com/rohitkolapkar/", "rohitkolapkar333@gmail.com"))
                 .build();
     }
     
