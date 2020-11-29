@@ -48,9 +48,16 @@ public class CommonConstants {
 	
 	public static final String FILE_NOT_FOUND = "File not found";
 	
-	public static final String BCC_mail = "swapkolapkar@gmail.com";
-	public static final String Business_Registration_Subject = "Registration Success ";
-	public static final String Business_Registration_Body = "Thanks for connecting with us.";
+	public static final String BCC_MAIL = "swapkolapkar@gmail.com";
+	
+	public static final String BUSINESS_REGISTRATION_SUBJECT = "Business Registration Successful";
+	public static final String BUSINESS_REGISTRATION_BODY = "Thank You for regestering your business with us.";
+	
+	public static final String CUSTOMER_REGISTRATION_SUBJECT = "Registration Successful";
+	public static final String CUSTOMER_REGISTRATION_BODY = "Thank You for regestering with us.";
+	
+	public static final String AUTHENTICATION_FORGOT_PASSWORD_SUBJECT = "Forget Password";
+	public static final String AUTHENTICATION_FORGOT_PASSEORD_BODY = "Hello BookMyAppointment User,\n";
 
 		
 	public static final String APPLICATIONID_FCADMIN = "11155";

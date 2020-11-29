@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "txn_notification")
+@Table(name = "txn_customer")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserEntity implements Serializable {
+public class CustomerEntity implements Serializable {
 
     /**
      *
@@ -19,7 +19,7 @@ public class UserEntity implements Serializable {
 
     @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "email")

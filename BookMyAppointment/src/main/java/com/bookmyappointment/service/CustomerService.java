@@ -1,14 +1,14 @@
 package com.bookmyappointment.service;
 
-import com.bookmyappointment.entity.UserEntity;
+import com.bookmyappointment.entity.CustomerEntity;
 import com.bookmyappointment.util.BaseResponse;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public interface UserService {
+public interface CustomerService {
 
-    BaseResponse<UserEntity> saveUserDetail(HttpServletRequest request, UserEntity user);
+    BaseResponse<CustomerEntity> saveUserDetail(HttpServletRequest request, CustomerEntity user);
 
 }

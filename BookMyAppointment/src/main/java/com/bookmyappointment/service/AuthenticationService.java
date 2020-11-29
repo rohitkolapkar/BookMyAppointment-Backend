@@ -2,7 +2,7 @@ package com.bookmyappointment.service;
 
 
 import com.bookmyappointment.entity.AuthenticationEntity;
-import com.bookmyappointment.entity.UserEntity;
+import com.bookmyappointment.entity.CustomerEntity;
 import com.bookmyappointment.util.BaseResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,8 @@ public interface AuthenticationService {
 
     BaseResponse<AuthenticationEntity> saveAuthenticationDetail(HttpServletRequest request, AuthenticationEntity authentication);
 
-    BaseResponse<AuthenticationEntity> AuthenticateUser(HttpServletRequest request, AuthenticationEntity authentication);
-
+    BaseResponse<AuthenticationEntity> authenticateUser(HttpServletRequest request, AuthenticationEntity authentication);
+    
+    BaseResponse<AuthenticationEntity> forgotPassword(HttpServletRequest request, AuthenticationEntity authenticationEntity);
 
 }

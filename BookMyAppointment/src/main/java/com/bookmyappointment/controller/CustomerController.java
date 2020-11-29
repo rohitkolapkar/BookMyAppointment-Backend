@@ -1,8 +1,8 @@
 package com.bookmyappointment.controller;
 
 import com.bookmyappointment.entity.BusinessEntity;
-import com.bookmyappointment.entity.UserEntity;
-import com.bookmyappointment.service.UserService;
+import com.bookmyappointment.entity.CustomerEntity;
+import com.bookmyappointment.service.CustomerService;
 import com.bookmyappointment.util.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("api/v1/user")
-public class UserController {
+@RequestMapping("api/v1/customer")
+public class CustomerController {
 
 	@Autowired
-	UserService service;
+	CustomerService service;
 
-	public UserController() {
+	public CustomerController() {
 		System.out.println("in constructor of "+getClass().getName());
 	}
 
 	@PostMapping()
-	public ResponseEntity<BaseResponse<UserEntity>> RegisterUser(HttpServletRequest request,
-																 @RequestBody UserEntity user) {
-		BaseResponse<UserEntity> userResponse = new BaseResponse<UserEntity>();
+	public ResponseEntity<BaseResponse<CustomerEntity>> RegisterUser(HttpServletRequest request,
+																 @RequestBody CustomerEntity user) {
+		BaseResponse<CustomerEntity> userResponse = new BaseResponse<CustomerEntity>();
 
-		ResponseEntity<BaseResponse<UserEntity>> response = null;
+		ResponseEntity<BaseResponse<CustomerEntity>> response = null;
 
 		userResponse = service.saveUserDetail(request,user);
 
-		response = new ResponseEntity<BaseResponse<UserEntity>>(userResponse, null, HttpStatus.OK);
+		response = new ResponseEntity<BaseResponse<CustomerEntity>>(userResponse, null, HttpStatus.OK);
 
 		return response;
 

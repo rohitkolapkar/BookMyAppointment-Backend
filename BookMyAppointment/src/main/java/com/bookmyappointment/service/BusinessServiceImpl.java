@@ -24,7 +24,7 @@ public class BusinessServiceImpl implements BusinessService{
 
     @Autowired
     NotificationContoller notificationContoller;
-
+    
 
     public BaseResponse<BusinessEntity> saveBusinessDetail(HttpServletRequest request, BusinessEntity business){
 
@@ -44,9 +44,9 @@ public class BusinessServiceImpl implements BusinessService{
         Notification notification = new Notification();
         notification.setToMail(business.getBusinessEmail());
         notification.setUserName(business.getBusinessName());
-        notification.setBccmail(CommonConstants.BCC_mail);
-        notification.setSubject(CommonConstants.Business_Registration_Subject);
-        String MailBody = CommonConstants.Business_Registration_Body + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
+        notification.setBccmail(CommonConstants.BCC_MAIL);
+        notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
+        String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
         notification.setBody(MailBody);
         notificationContoller.saveNotification(request,notification);
 

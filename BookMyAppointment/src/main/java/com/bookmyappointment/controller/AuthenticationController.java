@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.bookmyappointment.entity.AuthenticationEntity;
 import com.bookmyappointment.entity.BusinessEntity;
-import com.bookmyappointment.entity.UserEntity;
+import com.bookmyappointment.entity.CustomerEntity;
 import com.bookmyappointment.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,21 +20,34 @@ import com.bookmyappointment.util.BaseResponse;
 
 @RestController
 @RequestMapping("api/v1/authenticateuser")
-
 public class AuthenticationController {
 
     @Autowired
     AuthenticationService service;
 
     @PostMapping()
-    public ResponseEntity<BaseResponse<AuthenticationEntity>> AuthenticateUser(HttpServletRequest request,
+    public ResponseEntity<BaseResponse<AuthenticationEntity>> authenticateUser(HttpServletRequest request,
                                                                                @RequestBody AuthenticationEntity user) {
         BaseResponse<AuthenticationEntity> userResponse = new BaseResponse<>();
 
         ResponseEntity<BaseResponse<AuthenticationEntity>> response = null;
-        userResponse = service.AuthenticateUser(request, user);
+        userResponse = service.authenticateUser(request, user);
         response = new ResponseEntity<BaseResponse<AuthenticationEntity>>(userResponse, null, HttpStatus.OK);
         return response;
 
     }
+    
+    @PostMapping("/forgot")
+    public ResponseEntity<BaseResponse<AuthenticationEntity>> forgotPassword(HttpServletRequest request,
+                                                                               @RequestBody AuthenticationEntity user) {
+        BaseResponse<AuthenticationEntity> userResponse = new BaseResponse<>();
+
+        ResponseEntity<BaseResponse<AuthenticationEntity>> response = null;
+        userResponse = service.forgotPassword(request, user);
+        response = new ResponseEntity<BaseResponse<AuthenticationEntity>>(userResponse, null, HttpStatus.OK);
+        return response;
+
+    }
+    
+    
 }

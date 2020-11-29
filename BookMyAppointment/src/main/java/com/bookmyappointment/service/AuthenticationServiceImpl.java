@@ -1,6 +1,7 @@
 package com.bookmyappointment.service;
 
 import com.bookmyappointment.entity.AuthenticationEntity;
+import com.bookmyappointment.entity.Notification;
 import com.bookmyappointment.repository.AuthenticationRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
@@ -17,6 +18,9 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
 
     @Autowired
     AuthenticationRepository repository;
+    
+	@Autowired
+	NotificationService notificationService;
 
     @Override
     public BaseResponse<AuthenticationEntity> saveAuthenticationDetail(HttpServletRequest request, AuthenticationEntity authentication) {
@@ -34,13 +38,13 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
     }
 
     @Override
-    public BaseResponse<AuthenticationEntity> AuthenticateUser(HttpServletRequest request, AuthenticationEntity authentication) {
+    public BaseResponse<AuthenticationEntity> authenticateUser(HttpServletRequest request, AuthenticationEntity authentication) {
         BaseResponse<AuthenticationEntity> baseResponse = new BaseResponse<>();
         AuthenticationEntity authObjDB = new AuthenticationEntity();
         authObjDB = repository.findByEmail(authentication.getEmail());
 
         if(null != authObjDB){
-            if(authObjDB.getPassword() == authentication.getPassword()){
+            if(authObjDB.getPassword().equals(authentication.getPassword())){
                 baseResponse.setResponseObject(authObjDB);
                 baseResponse.setStatus(CommonConstants.SUCCESS);
                 baseResponse.setReasonText("User Successfully Authenticated  ");
@@ -82,4 +86,42 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
         }
         return password;
     }
+
+	@Override
+	public BaseResponse<AuthenticationEntity> forgotPassword(HttpServletRequest request,
+			AuthenticationEntity authenticationEntity) {
+		BaseResponse<AuthenticationEntity> baseResponse = new BaseResponse<>();
+		AuthenticationEntity authObjDB = new AuthenticationEntity();
+		authObjDB = repository.findByEmail(authenticationEntity.getEmail());
+
+		//user found
+		if (null != authObjDB) {
+			
+				baseResponse.setResponseObject(authObjDB);
+				baseResponse.setStatus(CommonConstants.SUCCESS);
+				baseResponse.setReasonText("Password has been sent to registered email address.");
+				baseResponse.setReasonCode("200");
+				
+				//send password via email
+		        Notification notification = new Notification();
+		        notification.setToMail(authObjDB.getEmail());
+		        notification.setUserName(authObjDB.getName());
+		        notification.setBccmail(CommonConstants.BCC_MAIL);
+		        notification.setSubject(CommonConstants.AUTHENTICATION_FORGOT_PASSWORD_SUBJECT);
+		        String MailBody = CommonConstants.AUTHENTICATION_FORGOT_PASSEORD_BODY + "Login with following Details \n\n "+ "UserName: "+authObjDB.getEmail()+"\n\n password: "+ authObjDB.getPassword()+
+		        		"\n \n \n We strongly recommend you to change your password by logging into BookMyAppointment system. Thankyou.";
+		        notification.setBody(MailBody);
+		        notificationService.sendMail(request, notification);
+		        notificationService.saveNotification(request,notification);
+					
+			 
+		} else {
+			baseResponse.setStatus(CommonConstants.FAIL);
+			baseResponse.setReasonText("User Not Found");
+			baseResponse.setReasonCode("400");
+		}
+		
+		return baseResponse;
+
+	}
 }

@@ -24,7 +24,7 @@ public class AuthenticationEntity implements Serializable{
 
     @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "email")

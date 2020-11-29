@@ -3,7 +3,7 @@ package com.bookmyappointment.service;
 import com.bookmyappointment.controller.NotificationContoller;
 import com.bookmyappointment.entity.AuthenticationEntity;
 import com.bookmyappointment.entity.Notification;
-import com.bookmyappointment.entity.UserEntity;
+import com.bookmyappointment.entity.CustomerEntity;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
 import com.bookmyappointment.repository.*;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class UserServiceImpl implements  UserService{
+public class CustomerServiceImpl implements  CustomerService{
 
     @Autowired
-    UserRepository repository;
+    CustomerRepository repository;
 
     @Autowired
     AuthenticationService authService;
@@ -26,9 +26,9 @@ public class UserServiceImpl implements  UserService{
     NotificationContoller notificationContoller;
 
     @Override
-    public BaseResponse<UserEntity> saveUserDetail(HttpServletRequest request, UserEntity user) {
+    public BaseResponse<CustomerEntity> saveUserDetail(HttpServletRequest request, CustomerEntity user) {
 
-        BaseResponse<UserEntity> baseResponse = new BaseResponse<>();
+        BaseResponse<CustomerEntity> baseResponse = new BaseResponse<>();
         //Save Business
         user = repository.save(user);
 
@@ -37,16 +37,16 @@ public class UserServiceImpl implements  UserService{
         AuthenticationEntity authenticationEntity = new AuthenticationEntity();
         authenticationEntity.setEmail(user.getEmail());
         authenticationEntity.setMobile(user.getMobile());
-        authenticationEntity.setRole("user");
+        authenticationEntity.setRole("customer");
         authentication = authService.saveAuthenticationDetail(request,authenticationEntity);
 
         //Send Mail
         Notification notification = new Notification();
         notification.setToMail(user.getEmail());
         notification.setUserName(user.getName());
-        notification.setBccmail(CommonConstants.BCC_mail);
-        notification.setSubject(CommonConstants.Business_Registration_Subject);
-        String MailBody = CommonConstants.Business_Registration_Body + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
+        notification.setBccmail(CommonConstants.BCC_MAIL);
+        notification.setSubject(CommonConstants.CUSTOMER_REGISTRATION_SUBJECT);
+        String MailBody = CommonConstants.CUSTOMER_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
         notification.setBody(MailBody);
         notificationContoller.saveNotification(request,notification);
 
