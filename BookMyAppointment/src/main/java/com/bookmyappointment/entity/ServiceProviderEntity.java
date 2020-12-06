@@ -16,10 +16,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Entity
-@Table(name = "txn_business")
+@Table(name = "txn_service_provider")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BusinessEntity implements Serializable{
+public class ServiceProviderEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -28,8 +28,6 @@ public class BusinessEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "bu_id")
-    private Integer buId;
 
 	@Column(name = "business_email")
     private String businessEmail;
@@ -53,13 +51,6 @@ public class BusinessEntity implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getBuId() {
-		return buId;
-	}
-
-	public void setBuId(Integer buId) {
-		this.buId = buId;
-	}
 
 	public String getBusinessEmail() {
 		return businessEmail;

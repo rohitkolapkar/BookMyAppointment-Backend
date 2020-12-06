@@ -2,8 +2,8 @@ package com.bookmyappointment.service;
 
 import com.bookmyappointment.controller.NotificationContoller;
 import com.bookmyappointment.entity.AuthenticationEntity;
+import com.bookmyappointment.entity.ServiceProviderEntity;
 import com.bookmyappointment.entity.Notification;
-import com.bookmyappointment.entity.CustomerEntity;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
 import com.bookmyappointment.repository.*;
@@ -14,44 +14,45 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class CustomerServiceImpl implements  CustomerService{
+public class ServiceProviderServiceImpl implements ServiceProviderService{
 
     @Autowired
-    CustomerRepository repository;
+    ServiceProviderRepository repository;
 
     @Autowired
     AuthenticationService authService;
 
     @Autowired
     NotificationContoller notificationContoller;
+    
 
-    @Override
-    public BaseResponse<CustomerEntity> saveUserDetail(HttpServletRequest request, CustomerEntity user) {
+    public BaseResponse<ServiceProviderEntity> saveBusinessDetail(HttpServletRequest request, ServiceProviderEntity business){
 
-        BaseResponse<CustomerEntity> baseResponse = new BaseResponse<>();
+        BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
         //Save Business
-        user = repository.save(user);
+        business = repository.save(business);
 
         //Save Authentication Detail
         BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
         AuthenticationEntity authenticationEntity = new AuthenticationEntity();
-        authenticationEntity.setEmail(user.getEmail());
-        authenticationEntity.setMobile(user.getMobile());
-        authenticationEntity.setRole("customer");
+        authenticationEntity.setName(business.getBusinessName());
+        authenticationEntity.setEmail(business.getBusinessEmail());
+        authenticationEntity.setMobile(business.getMobile());
+        authenticationEntity.setRole("serviceProvider");
         authentication = authService.saveAuthenticationDetail(request,authenticationEntity);
 
         //Send Mail
         Notification notification = new Notification();
-        notification.setToMail(user.getEmail());
-        notification.setUserName(user.getName());
+        notification.setToMail(business.getBusinessEmail());
+        notification.setUserName(business.getBusinessName());
         notification.setBccmail(CommonConstants.BCC_MAIL);
-        notification.setSubject(CommonConstants.CUSTOMER_REGISTRATION_SUBJECT);
-        String MailBody = CommonConstants.CUSTOMER_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
+        notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
+        String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
         notification.setBody(MailBody);
         notificationContoller.saveNotification(request,notification);
 
         // Set BaseResponse
-        baseResponse.setResponseObject(user);
+        baseResponse.setResponseObject(business);
         baseResponse.setStatus(CommonConstants.SUCCESS);
         baseResponse.setReasonText("Business Added successfully");
         baseResponse.setReasonCode("200");

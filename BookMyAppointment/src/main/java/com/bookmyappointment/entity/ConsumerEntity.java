@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "txn_customer")
+@Table(name = "txn_consumer")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerEntity implements Serializable {
+public class ConsumerEntity implements Serializable {
 
     /**
      *

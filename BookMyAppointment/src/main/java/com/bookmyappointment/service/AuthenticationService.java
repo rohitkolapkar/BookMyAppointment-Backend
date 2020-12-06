@@ -2,7 +2,7 @@ package com.bookmyappointment.service;
 
 
 import com.bookmyappointment.entity.AuthenticationEntity;
-import com.bookmyappointment.entity.CustomerEntity;
+import com.bookmyappointment.entity.ConsumerEntity;
 import com.bookmyappointment.util.BaseResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
