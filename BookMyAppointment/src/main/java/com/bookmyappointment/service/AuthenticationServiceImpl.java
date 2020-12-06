@@ -25,13 +25,15 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
     @Override
     public BaseResponse<AuthenticationEntity> saveAuthenticationDetail(HttpServletRequest request, AuthenticationEntity authentication) {
         BaseResponse<AuthenticationEntity> baseResponse = new BaseResponse<>();
-        String Password = generatePassword(8).toString();
-        authentication.setPassword(Password);
+		/*
+		 * String Password = generatePassword(8).toString();
+		 * authentication.setPassword(Password);
+		 */
         authentication = repository.save(authentication);
 
         baseResponse.setResponseObject(authentication);
         baseResponse.setStatus(CommonConstants.SUCCESS);
-        baseResponse.setReasonText("User Authentication Detail Added successfully");
+        baseResponse.setReasonText("User Added successfully");
         baseResponse.setReasonCode("200");
 
         return baseResponse;

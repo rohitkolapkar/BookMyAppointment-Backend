@@ -34,20 +34,25 @@ public class ConsumerServiceImpl implements  ConsumerService{
 
         //Save Authentication Detail
         BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
+        
+        //create AuthenticationEntity Object
         AuthenticationEntity authenticationEntity = new AuthenticationEntity();
-        authenticationEntity.setName(user.getName());
-        authenticationEntity.setEmail(user.getEmail());
-        authenticationEntity.setMobile(user.getMobile());
+        authenticationEntity.setName(user.getConsumerName());
+        authenticationEntity.setEmail(user.getConsumerEmail());
+        authenticationEntity.setMobile(user.getConsumerPhone());
+        authenticationEntity.setPassword(user.getConsumerPassword());
+        authenticationEntity.setActive(true);
         authenticationEntity.setRole("consumer");
+        
         authentication = authService.saveAuthenticationDetail(request,authenticationEntity);
 
         //Send Mail
         Notification notification = new Notification();
-        notification.setToMail(user.getEmail());
-        notification.setUserName(user.getName());
+        notification.setToMail(user.getConsumerEmail());
+        notification.setUserName(user.getConsumerName());
         notification.setBccmail(CommonConstants.BCC_MAIL);
         notification.setSubject(CommonConstants.CUSTOMER_REGISTRATION_SUBJECT);
-        String MailBody = CommonConstants.CUSTOMER_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
+        String MailBody = CommonConstants.CUSTOMER_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+user.getConsumerEmail()+"\n\n password: "+ user.getConsumerPassword();
         notification.setBody(MailBody);
         notificationContoller.saveNotification(request,notification);
 
