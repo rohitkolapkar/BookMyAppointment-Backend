@@ -36,19 +36,19 @@ public class ServiceProviderEntity implements Serializable{
     private String businessName;
     private String businessAddress;
     
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
     //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
     private ServiceCategoryEntity serviceCategory;
     
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name="city_id", referencedColumnName="cityId")
     private CityEntity city;
     
-    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER*/ ) 
+    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
 	private List<ServiceEntity> services;
   	
-    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER*/ ) 
+    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
 	private List<BusinessHoursEntity> businessHours;
 
 	public ServiceProviderEntity() {

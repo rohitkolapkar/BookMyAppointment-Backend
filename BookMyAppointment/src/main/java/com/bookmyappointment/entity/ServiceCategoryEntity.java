@@ -25,7 +25,7 @@ public class ServiceCategoryEntity {
     private Integer categoryId;
     private String categoryName;
     
-	@OneToMany(mappedBy = "serviceCategory", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
+	@OneToMany(mappedBy = "serviceCategory", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER*/ ) 
 	private List<ServiceProviderEntity> serviceProviders;
 
 	public ServiceCategoryEntity() {

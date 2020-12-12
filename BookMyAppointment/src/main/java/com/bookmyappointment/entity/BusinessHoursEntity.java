@@ -2,6 +2,7 @@ package com.bookmyappointment.entity;
 
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class BusinessHoursEntity {
 	private boolean open;
 	private int day;
 	
-	 @ManyToOne
+	 @ManyToOne(cascade=CascadeType.MERGE)
 	 @JoinColumn(name = "sp_id", referencedColumnName = "spId")
 	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
 	 private ServiceProviderEntity serviceProvider;

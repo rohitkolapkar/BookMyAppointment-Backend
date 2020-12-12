@@ -27,7 +27,7 @@ public class CityEntity {
   
     private String cityName;
     
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
+    @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER*/ ) 
 	private List<ServiceProviderEntity> serviceProviders;
 
 	public CityEntity() {

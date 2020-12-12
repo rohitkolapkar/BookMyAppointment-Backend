@@ -48,7 +48,7 @@ public class CommonConstants {
 	
 	public static final String FILE_NOT_FOUND = "File not found";
 	
-	public static final String BCC_MAIL = "swapkolapkar@gmail.com";
+	public static final String BCC_MAIL = null;
 	
 	public static final String BUSINESS_REGISTRATION_SUBJECT = "Business Registration Successful";
 	public static final String BUSINESS_REGISTRATION_BODY = "Thank You for regestering your business with us.";

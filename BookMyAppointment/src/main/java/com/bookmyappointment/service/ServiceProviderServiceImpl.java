@@ -21,12 +21,6 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 	ServiceProviderRepository spRepository;
 
 	@Autowired
-	ServiceCategoryRepository categoryRepository;
-
-	@Autowired
-	CityRepository cityRepository;
-
-	@Autowired
 	AuthenticationService authService;
 
 	@Autowired
@@ -38,18 +32,10 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 		System.out.println(business);
 		BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
 
-		CityEntity city = new CityEntity();
-		city = business.getCity();
-		// city=cityRepository.findByCityName(city.getCityName());
-
-		cityRepository.save(city);
-
-		// save category ServiceCategoryEntity serviceCategory=new
-		ServiceCategoryEntity serviceCategory = business.getServiceCategory();
-		categoryRepository.save(serviceCategory);
-
 		// Save Business
 		business = spRepository.save(business);
+		
+		
 
 		// Save Authentication Detail
 		BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
