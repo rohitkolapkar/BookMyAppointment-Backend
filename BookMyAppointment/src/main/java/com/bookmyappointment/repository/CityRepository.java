@@ -1,0 +1,13 @@
+package com.bookmyappointment.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.bookmyappointment.entity.CityEntity;
+
+@Repository
+public interface CityRepository extends CrudRepository<CityEntity, Integer> {
+
+	CityEntity findByCityName(String cityName);
+
+}

@@ -1,0 +1,70 @@
+package com.bookmyappointment.entity;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@Entity
+@Table(name = "txn_cities")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CityEntity {
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer cityId;
+  
+    private String cityName;
+    
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
+	private List<ServiceProviderEntity> serviceProviders;
+
+	public CityEntity() {
+		super();
+	}
+
+	public CityEntity(Integer cityId, String cityName, List<ServiceProviderEntity> serviceProviders) {
+		super();
+		this.cityId = cityId;
+		this.cityName = cityName;
+		this.serviceProviders = serviceProviders;
+	}
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public List<ServiceProviderEntity> getServiceProviders() {
+		return serviceProviders;
+	}
+
+	public void setServiceProviders(List<ServiceProviderEntity> serviceProviders) {
+		this.serviceProviders = serviceProviders;
+	}
+
+	
+
+}

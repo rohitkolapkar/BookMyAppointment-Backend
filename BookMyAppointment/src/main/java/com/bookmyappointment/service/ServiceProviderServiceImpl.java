@@ -2,62 +2,89 @@ package com.bookmyappointment.service;
 
 import com.bookmyappointment.controller.NotificationContoller;
 import com.bookmyappointment.entity.AuthenticationEntity;
+import com.bookmyappointment.entity.CityEntity;
 import com.bookmyappointment.entity.ServiceProviderEntity;
 import com.bookmyappointment.entity.Notification;
+import com.bookmyappointment.entity.ServiceCategoryEntity;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
 import com.bookmyappointment.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class ServiceProviderServiceImpl implements ServiceProviderService{
+public class ServiceProviderServiceImpl implements ServiceProviderService {
 
-    @Autowired
-    ServiceProviderRepository repository;
+	@Autowired
+	ServiceProviderRepository spRepository;
 
-    @Autowired
-    AuthenticationService authService;
+	@Autowired
+	ServiceCategoryRepository categoryRepository;
 
-    @Autowired
-    NotificationContoller notificationContoller;
-    
+	@Autowired
+	CityRepository cityRepository;
 
-    public BaseResponse<ServiceProviderEntity> saveBusinessDetail(HttpServletRequest request, ServiceProviderEntity business){
+	@Autowired
+	AuthenticationService authService;
 
-        BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
-        //Save Business
-        business = repository.save(business);
+	@Autowired
+	NotificationContoller notificationContoller;
 
-        //Save Authentication Detail
-        BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
-        AuthenticationEntity authenticationEntity = new AuthenticationEntity();
-        authenticationEntity.setName(business.getBusinessName());
-        authenticationEntity.setEmail(business.getBusinessEmail());
-        authenticationEntity.setMobile(business.getMobile());
-        authenticationEntity.setRole("serviceProvider");
-        authentication = authService.saveAuthenticationDetail(request,authenticationEntity);
+	public BaseResponse<ServiceProviderEntity> saveServiceProvider(HttpServletRequest request,
+			ServiceProviderEntity business) {
 
-        //Send Mail
-        Notification notification = new Notification();
-        notification.setToMail(business.getBusinessEmail());
-        notification.setUserName(business.getBusinessName());
-        notification.setBccmail(CommonConstants.BCC_MAIL);
-        notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
-        String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+ authentication.getResponseObject().getPassword();
-        notification.setBody(MailBody);
-        notificationContoller.saveNotification(request,notification);
+		System.out.println(business);
+		BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
 
-        // Set BaseResponse
-        baseResponse.setResponseObject(business);
-        baseResponse.setStatus(CommonConstants.SUCCESS);
-        baseResponse.setReasonText("Business Added successfully");
-        baseResponse.setReasonCode("200");
+		CityEntity city = new CityEntity();
+		city = business.getCity();
+		// city=cityRepository.findByCityName(city.getCityName());
 
-        return baseResponse;
+		cityRepository.save(city);
 
-    }
+		// save category ServiceCategoryEntity serviceCategory=new
+		ServiceCategoryEntity serviceCategory = business.getServiceCategory();
+		categoryRepository.save(serviceCategory);
+
+		// Save Business
+		business = spRepository.save(business);
+
+		// Save Authentication Detail
+		BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
+
+		AuthenticationEntity authenticationEntity = new AuthenticationEntity();
+		authenticationEntity.setName(business.getSpName());
+		authenticationEntity.setEmail(business.getSpEmail());
+		authenticationEntity.setMobile(business.getSpPhone());
+		authenticationEntity.setPassword(business.getSpPassword());
+		authenticationEntity.setActive(true);
+		authenticationEntity.setRole("serviceProvider");
+		authentication = authService.saveAuthenticationDetail(request, authenticationEntity);
+
+		// Send Mail
+		/*
+		 * Notification notification = new Notification();
+		 * notification.setToMail(business.getSpEmail());
+		 * notification.setUserName(business.getBusinessName());
+		 * notification.setBccmail(CommonConstants.BCC_MAIL);
+		 * notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
+		 * String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY +
+		 * "Login with following Detail \n\n "+
+		 * "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+
+		 * authentication.getResponseObject().getPassword();
+		 * notification.setBody(MailBody);
+		 * notificationContoller.saveNotification(request,notification);
+		 */
+
+		// Set BaseResponse
+		baseResponse.setResponseObject(business);
+		baseResponse.setStatus(CommonConstants.SUCCESS);
+		baseResponse.setReasonText("Business Added successfully");
+		baseResponse.setReasonCode("200");
+
+		return baseResponse;
+
+	}
 }

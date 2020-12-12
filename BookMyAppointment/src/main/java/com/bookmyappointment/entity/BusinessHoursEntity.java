@@ -1,0 +1,102 @@
+package com.bookmyappointment.entity;
+
+import java.time.LocalTime;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@Entity
+@Table(name = "txn_business_hours")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class BusinessHoursEntity {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer businessHourId;
+	private LocalTime openTime;
+	private LocalTime closeTime;
+	private boolean open;
+	private int day;
+	
+	 @ManyToOne
+	 @JoinColumn(name = "sp_id", referencedColumnName = "spId")
+	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
+	 private ServiceProviderEntity serviceProvider;
+
+	 public BusinessHoursEntity() {
+		 
+	 }
+	
+	public BusinessHoursEntity(Integer businessHourId, LocalTime openTime, LocalTime closeTime, boolean open, int day,
+			ServiceProviderEntity serviceProvider) {
+		super();
+		this.businessHourId = businessHourId;
+		this.openTime = openTime;
+		this.closeTime = closeTime;
+		this.open = open;
+		this.day = day;
+		this.serviceProvider = serviceProvider;
+	}
+
+	public Integer getBusinessHourId() {
+		return businessHourId;
+	}
+
+	public void setBusinessHourId(Integer businessHourId) {
+		this.businessHourId = businessHourId;
+	}
+
+	public LocalTime getOpenTime() {
+		return openTime;
+	}
+
+	public void setOpenTime(LocalTime openTime) {
+		this.openTime = openTime;
+	}
+
+	public LocalTime getCloseTime() {
+		return closeTime;
+	}
+
+	public void setCloseTime(LocalTime closeTime) {
+		this.closeTime = closeTime;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public ServiceProviderEntity getServiceProvider() {
+		return serviceProvider;
+	}
+
+	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
+	 
+	 
+	 
+	 
+
+}

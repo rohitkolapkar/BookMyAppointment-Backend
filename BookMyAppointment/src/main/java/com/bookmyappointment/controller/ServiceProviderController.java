@@ -34,7 +34,7 @@ public class ServiceProviderController {
 
         ResponseEntity<BaseResponse<ServiceProviderEntity>> response = null;
 
-        businessonResponse = service.saveBusinessDetail(request,business);
+        businessonResponse = service.saveServiceProvider(request,business);
 
         response = new ResponseEntity<BaseResponse<ServiceProviderEntity>>(businessonResponse, null, HttpStatus.OK);
 

@@ -10,5 +10,5 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public interface ServiceProviderService {
 	
-    BaseResponse<ServiceProviderEntity> saveBusinessDetail(HttpServletRequest request, ServiceProviderEntity business);
+    BaseResponse<ServiceProviderEntity> saveServiceProvider(HttpServletRequest request, ServiceProviderEntity business);
 }
