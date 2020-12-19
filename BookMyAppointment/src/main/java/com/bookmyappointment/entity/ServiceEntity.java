@@ -1,6 +1,7 @@
 package com.bookmyappointment.entity;
 
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
@@ -19,8 +20,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Table(name = "txn_services")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ServiceEntity {
-	
+public class ServiceEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer serviceId;

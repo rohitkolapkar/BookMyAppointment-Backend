@@ -33,7 +33,7 @@ public class ServiceProviderController {
         BaseResponse<ServiceProviderEntity> businessonResponse = new BaseResponse<ServiceProviderEntity>();
 
         ResponseEntity<BaseResponse<ServiceProviderEntity>> response = null;
-
+        System.out.println(business.toString());
         businessonResponse = service.saveServiceProvider(request,business);
 
         response = new ResponseEntity<BaseResponse<ServiceProviderEntity>>(businessonResponse, null, HttpStatus.OK);

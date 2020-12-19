@@ -36,12 +36,12 @@ public class ServiceProviderEntity implements Serializable{
     private String businessName;
     private String businessAddress;
     
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
     //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
     private ServiceCategoryEntity serviceCategory;
     
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="city_id", referencedColumnName="cityId")
     private CityEntity city;
     
@@ -171,9 +171,9 @@ public class ServiceProviderEntity implements Serializable{
 				spId, spName, spEmail, spPassword, spPhone, businessName, businessAddress, serviceCategory, city,
 				services, businessHours);
 	}
-	
-	
-    
+
+
+
    
 }
 

@@ -1,5 +1,6 @@
 package com.bookmyappointment.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,9 +20,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Table(name = "txn_cities")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CityEntity {
-	
-    @Id
+public class CityEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cityId;
   
@@ -65,6 +69,11 @@ public class CityEntity {
 		this.serviceProviders = serviceProviders;
 	}
 
-	
-
+	@Override
+	public String toString() {
+		return "CityEntity{" +
+				"cityId=" + cityId +
+				", cityName='" + cityName + '\'' +
+				'}';
+	}
 }

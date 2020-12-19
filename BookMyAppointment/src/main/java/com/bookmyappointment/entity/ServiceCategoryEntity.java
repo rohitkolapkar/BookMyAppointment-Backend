@@ -1,5 +1,6 @@
 package com.bookmyappointment.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,9 +19,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Table(name = "txn_service_categories")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ServiceCategoryEntity {
-	
-    @Id
+public class ServiceCategoryEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
     private String categoryName;
@@ -64,6 +68,11 @@ public class ServiceCategoryEntity {
 		this.serviceProviders = serviceProviders;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "ServiceCategoryEntity{" +
+				"categoryId=" + categoryId +
+				", categoryName='" + categoryName + '\'' +
+				'}';
+	}
 }
