@@ -36,12 +36,12 @@ public class ServiceCategoryEntity implements Serializable {
 		super();
 	}
 
-	public ServiceCategoryEntity(Integer categoryId, String categoryName,
-			List<ServiceProviderEntity> serviceProviders) {
+	public ServiceCategoryEntity(Integer categoryId, String categoryName
+			) {
 		super();
 		this.categoryId = categoryId;
 		this.categoryName = categoryName;
-		this.serviceProviders = serviceProviders;
+		
 	}
 
 	public Integer getCategoryId() {
@@ -60,19 +60,6 @@ public class ServiceCategoryEntity implements Serializable {
 		this.categoryName = categoryName;
 	}
 
-	public List<ServiceProviderEntity> getServiceProviders() {
-		return serviceProviders;
-	}
 
-	public void setServiceProviders(List<ServiceProviderEntity> serviceProviders) {
-		this.serviceProviders = serviceProviders;
-	}
 
-	@Override
-	public String toString() {
-		return "ServiceCategoryEntity{" +
-				"categoryId=" + categoryId +
-				", categoryName='" + categoryName + '\'' +
-				'}';
-	}
 }

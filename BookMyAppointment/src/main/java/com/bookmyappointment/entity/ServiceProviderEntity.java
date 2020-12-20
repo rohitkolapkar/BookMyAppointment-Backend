@@ -1,6 +1,5 @@
 package com.bookmyappointment.entity;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,34 +20,35 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Table(name = "txn_service_providers")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ServiceProviderEntity implements Serializable{
+public class ServiceProviderEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer spId;
-       
-    private String spName;
-    private String spEmail;
-    private String spPassword;
-    private String spPhone;
-    private String businessName;
-    private String businessAddress;
-    
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
-    //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
-    private ServiceCategoryEntity serviceCategory;
-    
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="city_id", referencedColumnName="cityId")
-    private CityEntity city;
-    
-    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer spId;
+
+	private String spName;
+	private String spEmail;
+	private String spPassword;
+	private String spPhone;
+	private String businessName;
+	private String businessAddress;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "category_id", referencedColumnName = "categoryId")
+	// referencedColumnName should be same as @Id field of reffered entity. here
+	// ServiceCategoryEntity
+	private ServiceCategoryEntity serviceCategory;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "city_id", referencedColumnName = "cityId")
+	private CityEntity city;
+
+	@OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /* ,fetch = FetchType.EAGER */ )
 	private List<ServiceEntity> services;
-  	
-    @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /*,fetch = FetchType.EAGER*/ ) 
+
+	@OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /* ,fetch = FetchType.EAGER */ )
 	private List<BusinessHoursEntity> businessHours;
 
 	public ServiceProviderEntity() {
@@ -164,16 +164,4 @@ public class ServiceProviderEntity implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"ServiceProviderEntity [spId=%s, spName=%s, spEmail=%s, spPassword=%s, spPhone=%s, businessName=%s, businessAddress=%s, serviceCategory=%s, city=%s, services=%s, businessHours=%s]",
-				spId, spName, spEmail, spPassword, spPhone, businessName, businessAddress, serviceCategory, city,
-				services, businessHours);
-	}
-
-
-
-   
 }
-

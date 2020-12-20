@@ -33,7 +33,7 @@ public class ServiceEntity implements Serializable {
 	
 	 @ManyToOne(cascade=CascadeType.MERGE)
 	 @JoinColumn(name = "sp_id", referencedColumnName = "spId")
-	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
+	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceProviderEntity
 	 private ServiceProviderEntity serviceProvider;
 
 	public ServiceEntity() {

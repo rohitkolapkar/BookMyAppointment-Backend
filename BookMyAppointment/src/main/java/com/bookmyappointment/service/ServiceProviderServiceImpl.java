@@ -50,19 +50,19 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 		authentication = authService.saveAuthenticationDetail(request, authenticationEntity);
 
 		// Send Mail
-		/*
-		 * Notification notification = new Notification();
-		 * notification.setToMail(business.getSpEmail());
-		 * notification.setUserName(business.getBusinessName());
-		 * notification.setBccmail(CommonConstants.BCC_MAIL);
-		 * notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
-		 * String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY +
-		 * "Login with following Detail \n\n "+
-		 * "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+
-		 * authentication.getResponseObject().getPassword();
-		 * notification.setBody(MailBody);
-		 * notificationContoller.saveNotification(request,notification);
-		 */
+		
+		  Notification notification = new Notification();
+		  notification.setToMail(business.getSpEmail());
+		  notification.setUserName(business.getBusinessName());
+		  notification.setBccmail(CommonConstants.BCC_MAIL);
+		  notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
+		  String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY +
+		  "Login with following Detail \n\n "+
+		  "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+
+		  authentication.getResponseObject().getPassword();
+		  notification.setBody(MailBody);
+		  notificationContoller.saveNotification(request,notification);
+		 
 
 		// Set BaseResponse
 		baseResponse.setResponseObject(business);
@@ -73,4 +73,8 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 		return baseResponse;
 
 	}
+	
+	
+	
+	
 }

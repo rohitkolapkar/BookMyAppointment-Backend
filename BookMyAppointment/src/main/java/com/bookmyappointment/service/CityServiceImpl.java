@@ -31,7 +31,7 @@ public class CityServiceImpl implements CityService {
     @Override
     public BaseResponse<CityEntity> gateAllCity(HttpServletRequest request, HttpServletResponse response) {
         BaseResponse<CityEntity> baseResponse = new BaseResponse<>();
-        List<CityEntity> entity = repository.findAll();
+        List<CityEntity> entity = repository.findAll();  
         baseResponse.setResponseListObject(entity);
         baseResponse.setStatus(CommonConstants.SUCCESS);
         baseResponse.setReasonText("find All city");

@@ -31,18 +31,18 @@ public class CityEntity implements Serializable {
   
     private String cityName;
     
-    @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER*/ ) 
+    @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER */) 
 	private List<ServiceProviderEntity> serviceProviders;
 
 	public CityEntity() {
 		super();
 	}
 
-	public CityEntity(Integer cityId, String cityName, List<ServiceProviderEntity> serviceProviders) {
+	public CityEntity(Integer cityId, String cityName) {
 		super();
 		this.cityId = cityId;
 		this.cityName = cityName;
-		this.serviceProviders = serviceProviders;
+		
 	}
 
 	public Integer getCityId() {
@@ -61,19 +61,16 @@ public class CityEntity implements Serializable {
 		this.cityName = cityName;
 	}
 
-	public List<ServiceProviderEntity> getServiceProviders() {
-		return serviceProviders;
-	}
 
-	public void setServiceProviders(List<ServiceProviderEntity> serviceProviders) {
-		this.serviceProviders = serviceProviders;
-	}
+	/*
+	 * public List<ServiceProviderEntity> getServiceProviders() { return
+	 * serviceProviders; }
+	 * 
+	 * public void setServiceProviders(List<ServiceProviderEntity> serviceProviders)
+	 * { this.serviceProviders = serviceProviders; }
+	 */
+	 
 
-	@Override
-	public String toString() {
-		return "CityEntity{" +
-				"cityId=" + cityId +
-				", cityName='" + cityName + '\'' +
-				'}';
-	}
+
+	
 }

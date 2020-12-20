@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Service
 public interface CityService {
+	
     BaseResponse<CityEntity> saveCity(HttpServletRequest request, CityEntity city);
 
     BaseResponse<CityEntity> gateAllCity(HttpServletRequest request, HttpServletResponse response);
