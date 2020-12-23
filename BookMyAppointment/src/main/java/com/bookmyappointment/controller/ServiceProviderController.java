@@ -4,18 +4,15 @@ package com.bookmyappointment.controller;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.bookmyappointment.entity.CityEntity;
 import com.bookmyappointment.entity.ServiceProviderEntity;
 import com.bookmyappointment.service.ServiceProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bookmyappointment.util.BaseResponse;
 
@@ -41,6 +38,16 @@ public class ServiceProviderController {
         return response;
 
 
+    }
+
+    @GetMapping(path="/{cityName}")
+    public ResponseEntity<BaseResponse<ServiceProviderEntity>> getAllCity(HttpServletRequest request,
+                                            @PathVariable("cityName") String cityName) {
+        BaseResponse<ServiceProviderEntity> serviceProviderResponse = new BaseResponse<>();
+        ResponseEntity<BaseResponse<ServiceProviderEntity>> response = null;
+        serviceProviderResponse = service.gateAllServiceProvider(request,cityName);
+        response = new ResponseEntity<BaseResponse<ServiceProviderEntity>>(serviceProviderResponse, null, HttpStatus.OK);
+        return response;
     }
 
 }

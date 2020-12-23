@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class ServiceProviderServiceImpl implements ServiceProviderService {
@@ -28,16 +29,10 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 
 	public BaseResponse<ServiceProviderEntity> saveServiceProvider(HttpServletRequest request,
 			ServiceProviderEntity business) {
-
-		System.out.println(business);
 		BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
 
-		// Save Business
 		business = spRepository.save(business);
-		
-		
 
-		// Save Authentication Detail
 		BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
 
 		AuthenticationEntity authenticationEntity = new AuthenticationEntity();
@@ -73,8 +68,23 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 		return baseResponse;
 
 	}
-	
-	
-	
-	
+
+	@Override
+	public BaseResponse<ServiceProviderEntity> gateAllServiceProvider(HttpServletRequest request, String cityName) {
+
+		BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
+		List<ServiceProviderEntity> entity = null;
+		if(cityName.equals("all")){
+			entity = spRepository.findAll();}
+		else{
+			entity = spRepository.findByCity_CityName(cityName);
+		}
+		baseResponse.setResponseListObject(entity);
+		baseResponse.setStatus(CommonConstants.SUCCESS);
+		baseResponse.setReasonText("find All city");
+		baseResponse.setReasonCode("200");
+		return baseResponse;
+	}
+
+
 }
