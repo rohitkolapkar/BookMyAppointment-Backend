@@ -82,13 +82,13 @@ public class ServiceEntity implements Serializable {
 		this.servicePrice = servicePrice;
 	}
 
-	public ServiceProviderEntity getServiceProvider() {
+	/*public ServiceProviderEntity getServiceProvider() {
 		return serviceProvider;
 	}
 
 	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
 		this.serviceProvider = serviceProvider;
-	}
+	}*/
 	 
 	 
 	

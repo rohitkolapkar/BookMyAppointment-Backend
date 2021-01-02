@@ -31,8 +31,8 @@ public class BusinessHoursEntity implements Serializable {
 	private boolean open;
 	private int day;
 	
-	 @ManyToOne(cascade=CascadeType.MERGE)
-	 @JoinColumn(name = "sp_id", referencedColumnName = "spId")
+	 /*@ManyToOne(cascade=CascadeType.MERGE)
+	 @JoinColumn(name = "sp_id", referencedColumnName = "spId")*/
 	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
 	 private ServiceProviderEntity serviceProvider;
 
@@ -91,14 +91,14 @@ public class BusinessHoursEntity implements Serializable {
 		this.day = day;
 	}
 
-	public ServiceProviderEntity getServiceProvider() {
+	/*public ServiceProviderEntity getServiceProvider() {
 		return serviceProvider;
 	}
 
 	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
 		this.serviceProvider = serviceProvider;
 	}
-	 
+*/
 	 
 	 
 	 
