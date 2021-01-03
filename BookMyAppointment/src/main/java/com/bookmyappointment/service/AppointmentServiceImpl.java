@@ -17,19 +17,19 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     AppointmentRepository repository;
     @Override
-    public BaseResponse<AppointmentEntity> bookAppointment(HttpServletRequest request, AppointmentEntity appoitmentObj) {
+    public BaseResponse<AppointmentEntity> bookAppointment(HttpServletRequest request, AppointmentEntity appointmentObj) {
         BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
 
         //First Check Appointment is present or not
-        Boolean result = CheckAppointmentExists(appoitmentObj.getServiceProvider().getSpId(),appoitmentObj.getStartDateTime(),appoitmentObj.getEndDateTime());
+        Boolean result = CheckAppointmentExists(appointmentObj.getServiceProvider().getSpId(),appointmentObj.getStartDateTime(),appointmentObj.getEndDateTime());
        if(result){
            baseResponse.setStatus(CommonConstants.FAIL);
            baseResponse.setReasonText("Time Slot Already Exists");
            baseResponse.setReasonCode("400");
 
        }else{
-           appoitmentObj = repository.save(appoitmentObj);
-           baseResponse.setResponseObject(appoitmentObj);
+           appointmentObj = repository.save(appointmentObj);
+           baseResponse.setResponseObject(appointmentObj);
            baseResponse.setStatus(CommonConstants.SUCCESS);
            baseResponse.setReasonText("appoitment Added successfully");
            baseResponse.setReasonCode("200");
@@ -56,6 +56,23 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
         List<AppointmentEntity> entity = repository.findAll();
+        baseResponse.setResponseListObject(entity);
+        baseResponse.setStatus(CommonConstants.SUCCESS);
+        baseResponse.setReasonText("List of Appointments");
+        baseResponse.setReasonCode("200");
+        return baseResponse;
+    }
+
+    @Override
+    public BaseResponse<AppointmentEntity> gateAppointmentDetail(HttpServletRequest request, String userType, Integer id) {
+        BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
+        List<AppointmentEntity> entity = null;
+        if(userType.equals("sp")){
+            entity= repository.findByServiceProvider_SpId(id);
+        }
+        else if(userType.equals("user")){
+            entity= repository.findByconsumer_Id(id);
+        }
         baseResponse.setResponseListObject(entity);
         baseResponse.setStatus(CommonConstants.SUCCESS);
         baseResponse.setReasonText("List of Appointments");

@@ -37,4 +37,12 @@ public class AppointmentController {
         Response = new ResponseEntity<BaseResponse<AppointmentEntity>>(appointmentResponse, null, HttpStatus.OK);
         return Response;
     }
+    @GetMapping(path="/{userType}/{userId}")
+    public ResponseEntity<BaseResponse<AppointmentEntity>> getAppointmentDetails(HttpServletRequest request,
+                                                                                     @PathVariable("userType") String userType,@PathVariable("userId") Integer id) {
+
+        BaseResponse<AppointmentEntity> appointmentResponse = service.gateAppointmentDetail(request,userType,id);
+        ResponseEntity<BaseResponse<AppointmentEntity>>   response = new ResponseEntity<BaseResponse<AppointmentEntity>>(appointmentResponse, null, HttpStatus.OK);
+        return response;
+    }
 }
