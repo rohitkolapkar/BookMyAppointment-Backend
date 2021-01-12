@@ -40,8 +40,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     private Boolean CheckAppointmentExists(Integer spId, Date startDateTime, Date endDateTime) {
-        AppointmentEntity appointment =
-                repository.findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualAndEndDateTimeLessThan(spId,startDateTime,endDateTime);
+        List<AppointmentEntity> appointment =
+                repository.findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualOrEndDateTimeLessThanEqual(spId,startDateTime,endDateTime);
 
         if(null != appointment){
             return true;

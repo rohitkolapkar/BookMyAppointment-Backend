@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "txn_appoitment")
+@Table(name = "txn_appointment")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AppointmentEntity implements Serializable {
@@ -18,7 +18,7 @@ public class AppointmentEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer appoitmentId;
+    private Integer appointmentId;
 
     @Column(name = "start_date_time")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss", timezone = "Asia/Kolkata")
@@ -44,85 +44,63 @@ public class AppointmentEntity implements Serializable {
     @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private ServiceEntity service;
 
-    /*public AppoitmentEntity(){
+	public Integer getAppointmentId() {
+		return appointmentId;
+	}
 
-    }
-    public AppoitmentEntity(Integer appoitmentId, Date startDateTime, Date endDateTime, ConsumerEntity consumer, ServiceProviderEntity serviceProvider, ServiceCategoryEntity serviceCategory, ServiceEntity service) {
-        this.appoitmentId = appoitmentId;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-        this.consumer = consumer;
-        this.serviceProvider = serviceProvider;
-        this.serviceCategory = serviceCategory;
-        this.service = service;
-    }*/
+	public void setAppointmentId(Integer appointmentId) {
+		this.appointmentId = appointmentId;
+	}
 
-    public Integer getAppoitmentId() {
-        return appoitmentId;
-    }
+	public Date getStartDateTime() {
+		return startDateTime;
+	}
 
-    public void setAppoitmentId(Integer appoitmentId) {
-        this.appoitmentId = appoitmentId;
-    }
+	public void setStartDateTime(Date startDateTime) {
+		this.startDateTime = startDateTime;
+	}
 
-    public Date getStartDateTime() {
-        return startDateTime;
-    }
+	public Date getEndDateTime() {
+		return endDateTime;
+	}
 
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
-    }
+	public void setEndDateTime(Date endDateTime) {
+		this.endDateTime = endDateTime;
+	}
 
-    public Date getEndDateTime() {
-        return endDateTime;
-    }
+	public ConsumerEntity getConsumer() {
+		return consumer;
+	}
 
-    public void setEndDateTime(Date endDateTime) {
-        this.endDateTime = endDateTime;
-    }
+	public void setConsumer(ConsumerEntity consumer) {
+		this.consumer = consumer;
+	}
 
-    public ConsumerEntity getConsumer() {
-        return consumer;
-    }
+	public ServiceProviderEntity getServiceProvider() {
+		return serviceProvider;
+	}
 
-    public void setConsumer(ConsumerEntity consumer) {
-        this.consumer = consumer;
-    }
+	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
 
-    public ServiceProviderEntity getServiceProvider() {
-        return serviceProvider;
-    }
+	public ServiceCategoryEntity getServiceCategory() {
+		return serviceCategory;
+	}
 
-    public void setServiceProvider(ServiceProviderEntity serviceProvider) {
-        this.serviceProvider = serviceProvider;
-    }
+	public void setServiceCategory(ServiceCategoryEntity serviceCategory) {
+		this.serviceCategory = serviceCategory;
+	}
 
-    public ServiceCategoryEntity getServiceCategory() {
-        return serviceCategory;
-    }
+	public ServiceEntity getService() {
+		return service;
+	}
 
-    public void setServiceCategory(ServiceCategoryEntity serviceCategory) {
-        this.serviceCategory = serviceCategory;
-    }
-
-    public ServiceEntity getService() {
-        return service;
-    }
-
-    public void setService(ServiceEntity service) {
-        this.service = service;
-    }
-
-    @Override
-    public String toString() {
-        return "AppoitmentEntity{" +
-                "appoitmentId=" + appoitmentId +
-                ", startDateTime=" + startDateTime +
-                ", endDateTime=" + endDateTime +
-                ", consumer=" + consumer +
-                ", serviceProvider=" + serviceProvider +
-                ", serviceCategory=" + serviceCategory +
-                ", service=" + service +
-                '}';
-    }
+	public void setService(ServiceEntity service) {
+		this.service = service;
+	}
+    
+    
+    
+    
 }

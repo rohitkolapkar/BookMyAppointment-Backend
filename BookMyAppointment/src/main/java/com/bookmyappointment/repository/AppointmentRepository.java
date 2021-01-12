@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<AppointmentEntity,Integer> {
-
-    AppointmentEntity findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualAndEndDateTimeLessThan(Integer spId, Date startDateTime, Date endDateTime);
-
     List<AppointmentEntity> findByServiceProvider_SpId(Integer id);
 
     List<AppointmentEntity> findByconsumer_Id(Integer id);
+
+	List<AppointmentEntity> findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualOrEndDateTimeLessThanEqual(
+			Integer spId, Date startDateTime, Date endDateTime);
 }

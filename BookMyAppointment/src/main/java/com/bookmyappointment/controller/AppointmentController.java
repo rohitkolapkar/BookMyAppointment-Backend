@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("api/v1/appotment")
+@RequestMapping("api/v1/appointment")
 public class AppointmentController {
 
     @Autowired

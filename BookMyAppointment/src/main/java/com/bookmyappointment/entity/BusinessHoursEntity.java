@@ -31,76 +31,48 @@ public class BusinessHoursEntity implements Serializable {
 	private boolean open;
 	private int day;
 	
-	 /*@ManyToOne(cascade=CascadeType.MERGE)
-	 @JoinColumn(name = "sp_id", referencedColumnName = "spId")*/
-	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceCategoryEntity
-	 private ServiceProviderEntity serviceProvider;
-
-	 public BusinessHoursEntity() {
-		 
-	 }
 	
-	public BusinessHoursEntity(Integer businessHourId, LocalTime openTime, LocalTime closeTime, boolean open, int day,
-			ServiceProviderEntity serviceProvider) {
-		super();
-		this.businessHourId = businessHourId;
-		this.openTime = openTime;
-		this.closeTime = closeTime;
-		this.open = open;
-		this.day = day;
-		this.serviceProvider = serviceProvider;
-	}
-
+	  @ManyToOne(cascade=CascadeType.MERGE)
+	  
+	  @JoinColumn(name = "sp_id", referencedColumnName = "spId")
+	  //referencedColumnName should be same as @Id field of reffered entity. here
+	  private ServiceProviderEntity serviceProvider;
+	 
+	
 	public Integer getBusinessHourId() {
 		return businessHourId;
 	}
-
 	public void setBusinessHourId(Integer businessHourId) {
 		this.businessHourId = businessHourId;
 	}
-
 	public LocalTime getOpenTime() {
 		return openTime;
 	}
-
 	public void setOpenTime(LocalTime openTime) {
 		this.openTime = openTime;
 	}
-
 	public LocalTime getCloseTime() {
 		return closeTime;
 	}
-
 	public void setCloseTime(LocalTime closeTime) {
 		this.closeTime = closeTime;
 	}
-
 	public boolean isOpen() {
 		return open;
 	}
-
 	public void setOpen(boolean open) {
 		this.open = open;
 	}
-
 	public int getDay() {
 		return day;
 	}
-
 	public void setDay(int day) {
 		this.day = day;
 	}
+	
 
-	/*public ServiceProviderEntity getServiceProvider() {
-		return serviceProvider;
-	}
+	
 
-	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
-		this.serviceProvider = serviceProvider;
-	}
-*/
-	 
-	 
-	 
+
 
 }
