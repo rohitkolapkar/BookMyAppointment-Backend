@@ -56,6 +56,12 @@ public class ServiceCategoryEntity implements Serializable {
 		this.categoryName = categoryName;
 	}
 
+	@Override
+	public String toString() {
+		return "ServiceCategoryEntity [categoryId=" + categoryId + ", categoryName=" + categoryName + "]";
+	}
+
+	
 
 
 }

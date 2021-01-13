@@ -37,10 +37,6 @@ public class AppointmentEntity implements Serializable {
     private ServiceProviderEntity serviceProvider;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
-    private ServiceCategoryEntity serviceCategory;
-
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private ServiceEntity service;
 
@@ -82,14 +78,6 @@ public class AppointmentEntity implements Serializable {
 
 	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
 		this.serviceProvider = serviceProvider;
-	}
-
-	public ServiceCategoryEntity getServiceCategory() {
-		return serviceCategory;
-	}
-
-	public void setServiceCategory(ServiceCategoryEntity serviceCategory) {
-		this.serviceCategory = serviceCategory;
 	}
 
 	public ServiceEntity getService() {

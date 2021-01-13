@@ -24,26 +24,16 @@ public class CityEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cityId;
-  
-    private String cityName;
-    
-    @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST /*,fetch = FetchType.EAGER */) 
-	private List<ServiceProviderEntity> serviceProviders;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer cityId;
 
-	public CityEntity() {
-		super();
-	}
+	private String cityName;
 
-	public CityEntity(Integer cityId, String cityName) {
-		super();
-		this.cityId = cityId;
-		this.cityName = cityName;
-		
-	}
+	/*
+	 * @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST ,fetch =
+	 * FetchType.EAGER ) private List<ServiceProviderEntity> serviceProviders;
+	 */
 
 	public Integer getCityId() {
 		return cityId;
@@ -61,6 +51,10 @@ public class CityEntity implements Serializable {
 		this.cityName = cityName;
 	}
 
+	@Override
+	public String toString() {
+		return "CityEntity [cityId=" + cityId + ", cityName=" + cityName + "]";
+	}
 
 	/*
 	 * public List<ServiceProviderEntity> getServiceProviders() { return
@@ -69,8 +63,5 @@ public class CityEntity implements Serializable {
 	 * public void setServiceProviders(List<ServiceProviderEntity> serviceProviders)
 	 * { this.serviceProviders = serviceProviders; }
 	 */
-	 
 
-
-	
 }

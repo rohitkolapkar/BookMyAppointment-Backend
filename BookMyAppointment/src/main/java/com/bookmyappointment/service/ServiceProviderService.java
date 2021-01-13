@@ -14,4 +14,8 @@ public interface ServiceProviderService {
     BaseResponse<ServiceProviderEntity> saveServiceProvider(HttpServletRequest request, ServiceProviderEntity business);
 
     BaseResponse<ServiceProviderEntity> gateAllServiceProvider(HttpServletRequest request, String cityName);
+
+	BaseResponse<ServiceProviderEntity> gateAllServiceProviderByCityCategory(HttpServletRequest request, int cityId,
+			int categoryId);
+
 }

@@ -12,4 +12,8 @@ import java.util.List;
 public interface ServiceProviderRepository extends JpaRepository<ServiceProviderEntity, Integer> {
 
     List<ServiceProviderEntity> findByCity_CityName(String cityName);
+
+	List<ServiceProviderEntity> findByCity_CityIdAndServiceCategory_CategoryId(int cityId, int categoryId);
+
+	
 }

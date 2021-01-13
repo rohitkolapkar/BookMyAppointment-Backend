@@ -86,5 +86,21 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 		return baseResponse;
 	}
 
+	@Override
+	public BaseResponse<ServiceProviderEntity> gateAllServiceProviderByCityCategory(HttpServletRequest request,
+			int cityId, int categoryId) {
+		
+		BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
+		List<ServiceProviderEntity> entity = null;
+		
+			entity = spRepository.findByCity_CityIdAndServiceCategory_CategoryId(cityId,categoryId);
+		
+		baseResponse.setResponseListObject(entity);
+		baseResponse.setStatus(CommonConstants.SUCCESS);
+		baseResponse.setReasonText("find All Service Providers by City and Category");
+		baseResponse.setReasonCode("200");
+		return baseResponse;
+		
+	}
 
 }

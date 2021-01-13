@@ -1,19 +1,25 @@
 package com.bookmyappointment.controller;
 
 
-import java.util.Calendar;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.websocket.server.PathParam;
 
-import com.bookmyappointment.entity.CityEntity;
-import com.bookmyappointment.entity.ServiceProviderEntity;
-import com.bookmyappointment.service.ServiceProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.bookmyappointment.entity.CityEntity;
+import com.bookmyappointment.entity.ServiceCategoryEntity;
+import com.bookmyappointment.entity.ServiceProviderEntity;
+import com.bookmyappointment.service.ServiceProviderService;
 import com.bookmyappointment.util.BaseResponse;
 
 @CrossOrigin("http://localhost:4200")
@@ -40,6 +46,7 @@ public class ServiceProviderController {
 
     }
 
+    
     @GetMapping(path="/{cityName}")
     public ResponseEntity<BaseResponse<ServiceProviderEntity>> getAllCity(HttpServletRequest request,
                                             @PathVariable("cityName") String cityName) {
@@ -49,5 +56,16 @@ public class ServiceProviderController {
         response = new ResponseEntity<BaseResponse<ServiceProviderEntity>>(serviceProviderResponse, null, HttpStatus.OK);
         return response;
     }
+    
+    @GetMapping(path="/search")
+    public ResponseEntity<BaseResponse<ServiceProviderEntity>> getServiceProviders(HttpServletRequest request,
+    		@RequestParam("cityId") int cityId,@RequestParam("categoryId") int categoryId) {
+    	BaseResponse<ServiceProviderEntity> serviceProviderResponse = new BaseResponse<>();
+        ResponseEntity<BaseResponse<ServiceProviderEntity>> response = null;
+        serviceProviderResponse = service.gateAllServiceProviderByCityCategory(request,cityId,categoryId);
+        response = new ResponseEntity<BaseResponse<ServiceProviderEntity>>(serviceProviderResponse, null, HttpStatus.OK);
+        return response;
+    }
+    
 
 }
