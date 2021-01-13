@@ -51,27 +51,6 @@ public class ServiceProviderEntity implements Serializable {
 	@OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL /* ,fetch = FetchType.EAGER */ )
 	private List<BusinessHoursEntity> businessHours;
 
-	public ServiceProviderEntity() {
-		super();
-	}
-
-	public ServiceProviderEntity(Integer spId, String spName, String spEmail, String spPassword, String spPhone,
-			String businessName, String businessAddress, ServiceCategoryEntity serviceCategory, CityEntity city,
-			List<ServiceEntity> services, List<BusinessHoursEntity> businessHours) {
-		super();
-		this.spId = spId;
-		this.spName = spName;
-		this.spEmail = spEmail;
-		this.spPassword = spPassword;
-		this.spPhone = spPhone;
-		this.businessName = businessName;
-		this.businessAddress = businessAddress;
-		this.serviceCategory = serviceCategory;
-		this.city = city;
-		this.services = services;
-		this.businessHours = businessHours;
-	}
-
 	public Integer getSpId() {
 		return spId;
 	}
@@ -163,5 +142,15 @@ public class ServiceProviderEntity implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public String toString() {
+		return "ServiceProviderEntity [spId=" + spId + ", spName=" + spName + ", spEmail=" + spEmail + ", spPassword="
+				+ spPassword + ", spPhone=" + spPhone + ", businessName=" + businessName + ", businessAddress="
+				+ businessAddress + ", serviceCategory=" + serviceCategory + ", city=" + city + ", services=" + services
+				+ ", businessHours=" + businessHours + "]";
+	}
+	
+	
 
 }
