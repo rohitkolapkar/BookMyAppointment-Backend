@@ -42,6 +42,7 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 		authenticationEntity.setPassword(business.getSpPassword());
 		authenticationEntity.setActive(true);
 		authenticationEntity.setRole("serviceProvider");
+		authenticationEntity.setSpId(business.getSpId());
 		authentication = authService.saveAuthenticationDetail(request, authenticationEntity);
 
 		// Send Mail

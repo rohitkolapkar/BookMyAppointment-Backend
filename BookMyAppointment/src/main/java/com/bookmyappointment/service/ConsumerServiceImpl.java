@@ -43,6 +43,7 @@ public class ConsumerServiceImpl implements  ConsumerService{
         authenticationEntity.setPassword(user.getConsumerPassword());
         authenticationEntity.setActive(true);
         authenticationEntity.setRole("consumer");
+        authenticationEntity.setConsumerId(user.getId());
         
         authentication = authService.saveAuthenticationDetail(request,authenticationEntity);
 

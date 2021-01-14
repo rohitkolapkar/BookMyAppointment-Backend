@@ -34,7 +34,10 @@ public class AuthenticationEntity implements Serializable{
     private String name;
     private String mobile;
     private boolean active;
+    private int consumerId=0;
+    private int spId=0;
     
+
 	public boolean isActive() {
 		return active;
 	}
@@ -78,7 +81,21 @@ public class AuthenticationEntity implements Serializable{
 		this.mobile = mobile;
 	}
 
-    
+	public int getConsumerId() {
+		return consumerId;
+	}
+	
+	public void setConsumerId(int consumerId) {
+		this.consumerId = consumerId;
+	}
+	
+	public int getSpId() {
+		return spId;
+	}
+	
+	public void setSpId(int spId) {
+		this.spId = spId;
+	}
     
 
 

@@ -36,19 +36,6 @@ public class ServiceEntity implements Serializable {
 	 //referencedColumnName should be same as @Id field of reffered entity. here ServiceProviderEntity
 	 private ServiceProviderEntity serviceProvider;
 
-	public ServiceEntity() {
-		super();
-	}
-
-	public ServiceEntity(Integer serviceId, String serviceName, LocalTime serviceDuration, double servicePrice,
-			ServiceProviderEntity serviceProvider) {
-		super();
-		this.serviceId = serviceId;
-		this.serviceName = serviceName;
-		this.serviceDuration = serviceDuration;
-		this.servicePrice = servicePrice;
-		this.serviceProvider = serviceProvider;
-	}
 
 	public Integer getServiceId() {
 		return serviceId;
@@ -84,11 +71,11 @@ public class ServiceEntity implements Serializable {
 
 	/*public ServiceProviderEntity getServiceProvider() {
 		return serviceProvider;
-	}
+	}*/
 
 	public void setServiceProvider(ServiceProviderEntity serviceProvider) {
 		this.serviceProvider = serviceProvider;
-	}*/
+	}
 	 
 	 
 	
