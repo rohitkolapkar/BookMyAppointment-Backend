@@ -15,4 +15,8 @@ public interface AppointmentService {
     BaseResponse<AppointmentEntity> gateAllAppointment(HttpServletRequest request, HttpServletResponse response);
 
     BaseResponse<AppointmentEntity> gateAppointmentDetail(HttpServletRequest request, String userType, Integer id);
+
+	BaseResponse<AppointmentEntity> checkAppointment(HttpServletRequest request, AppointmentEntity appoitmentObj);
+
+	BaseResponse<AppointmentEntity> gateAllAppointmentsByConsumerId(HttpServletRequest request, int consumerId);
 }

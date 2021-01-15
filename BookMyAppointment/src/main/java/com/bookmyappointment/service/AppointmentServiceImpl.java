@@ -1,6 +1,7 @@
 package com.bookmyappointment.service;
 
 import com.bookmyappointment.entity.AppointmentEntity;
+import com.bookmyappointment.entity.ServiceProviderEntity;
 import com.bookmyappointment.repository.AppointmentRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
@@ -39,6 +40,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         return baseResponse;
     }
 
+    //function to check appointment exist or not
     private Boolean CheckAppointmentExists(Integer spId, Date startDateTime, Date endDateTime) {
         /*List<AppointmentEntity> appointment =
                 repository.findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualOrEndDateTimeLessThanEqual(spId,startDateTime,endDateTime);
@@ -80,4 +82,39 @@ public class AppointmentServiceImpl implements AppointmentService {
         baseResponse.setReasonCode("200");
         return baseResponse;
     }
+
+	@Override
+	public BaseResponse<AppointmentEntity> checkAppointment(HttpServletRequest request,
+			AppointmentEntity appoitmentObj) {
+		BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
+		//First Check Appointment is present or not
+        Boolean result = CheckAppointmentExists(appoitmentObj.getServiceProvider().getSpId(),appoitmentObj.getStartDateTime(),appoitmentObj.getEndDateTime());
+        if(result){
+            baseResponse.setStatus(CommonConstants.FAIL);
+            baseResponse.setReasonText("Time Slot Already Exists");
+            baseResponse.setReasonCode("400");
+
+        }else{
+            baseResponse.setResponseObject(appoitmentObj);
+            baseResponse.setStatus(CommonConstants.SUCCESS);
+            baseResponse.setReasonText("Time Slot Available");
+            baseResponse.setReasonCode("200");
+        }
+		return baseResponse;
+	}
+
+	@Override
+	public BaseResponse<AppointmentEntity> gateAllAppointmentsByConsumerId(HttpServletRequest request, int consumerId) {
+		
+		BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
+        List<AppointmentEntity> entity = repository.findAll();
+     
+		entity = repository.findByConsumer_IdOrderByStartDateTimeDesc(consumerId);
+		
+		baseResponse.setResponseListObject(entity);
+		baseResponse.setStatus(CommonConstants.SUCCESS);
+		baseResponse.setReasonText("find All Appointments by consumer id");
+		baseResponse.setReasonCode("200");
+		return baseResponse;
+	}
 }
