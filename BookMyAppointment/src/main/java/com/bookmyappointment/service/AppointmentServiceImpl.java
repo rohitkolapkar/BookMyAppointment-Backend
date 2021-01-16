@@ -117,4 +117,44 @@ public class AppointmentServiceImpl implements AppointmentService {
 		baseResponse.setReasonCode("200");
 		return baseResponse;
 	}
+
+	//pending
+	@Override
+	public BaseResponse<AppointmentEntity> putAppointment(HttpServletRequest request, AppointmentEntity appoitmentObj) {
+		BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
+		AppointmentEntity entity=repository.save(appoitmentObj);
+        baseResponse.setResponseObject(entity);
+        baseResponse.setStatus(CommonConstants.SUCCESS);
+        baseResponse.setReasonText("List of Appointments");
+        baseResponse.setReasonCode("200");
+        return baseResponse;
+		
+	}
+
+	@Override
+	public BaseResponse<AppointmentEntity> gateAllAppointmentsBySpId(HttpServletRequest request, int spId) {
+		BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
+        List<AppointmentEntity> entity = repository.findByServiceProvider_SpIdOrderByStartDateTimeDesc(spId);	
+		baseResponse.setResponseListObject(entity);
+		baseResponse.setStatus(CommonConstants.SUCCESS);
+		baseResponse.setReasonText("find All Appointments by consumer id");
+		baseResponse.setReasonCode("200");
+		return baseResponse;
+	}
+
+	@Override
+	public BaseResponse<AppointmentEntity> gateAllAppointmentsBySpIdDates(HttpServletRequest request, int spId,
+			Date startDateTime, Date endDateTime) {
+		
+		BaseResponse<AppointmentEntity> baseResponse = new BaseResponse<>();
+        List<AppointmentEntity> entity = 
+        		 repository.findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualAndEndDateTimeLessThanEqual(spId,startDateTime,endDateTime);
+        System.out.println(entity);
+		baseResponse.setResponseListObject(entity);
+		baseResponse.setStatus(CommonConstants.SUCCESS);
+		baseResponse.setReasonText("find All Appointments by consumer id");
+		baseResponse.setReasonCode("200");
+		return baseResponse;
+		
+	}
 }

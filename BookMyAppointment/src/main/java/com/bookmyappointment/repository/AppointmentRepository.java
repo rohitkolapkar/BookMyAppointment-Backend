@@ -23,4 +23,9 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity,I
     List<AppointmentEntity> customQuery(@Param("spId") Integer spId, @Param("startDateTime") Date startDateTime, @Param("endDateTime") Date endDateTime);
 	
     List<AppointmentEntity> findByConsumer_IdOrderByStartDateTimeDesc(int consumerId);
+
+	List<AppointmentEntity> findByServiceProvider_SpIdOrderByStartDateTimeDesc(int spId);
+
+	List<AppointmentEntity> findByServiceProvider_SpIdAndStartDateTimeGreaterThanEqualAndEndDateTimeLessThanEqual(
+			int spId, Date startDateTime, Date endDateTime);
 }
