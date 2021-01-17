@@ -19,4 +19,6 @@ public interface AuthenticationService {
 	BaseResponse<AuthenticationEntity> forgotPassword(HttpServletRequest request,
 			AuthenticationEntity authenticationEntity);
 
+	public Boolean CheckUserExists(String emailId);
+
 }

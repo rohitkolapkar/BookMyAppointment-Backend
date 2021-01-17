@@ -126,4 +126,17 @@ public class AuthenticationServiceImpl implements  AuthenticationService {
 		return baseResponse;
 
 	}
+
+    @Override
+    public Boolean CheckUserExists(String emailId) {
+        AuthenticationEntity authObjDB = new AuthenticationEntity();
+        authObjDB = repository.findByEmail(emailId);
+        //if null return false
+        if(null != authObjDB){
+            return true;
+        }else{
+        return false;
+        }
+    }
+
 }
