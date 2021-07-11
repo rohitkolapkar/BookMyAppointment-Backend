@@ -30,40 +30,51 @@ public class ConsumerServiceImpl implements  ConsumerService{
 
         BaseResponse<ConsumerEntity> baseResponse = new BaseResponse<>();
         //Save Business
-        user = repository.save(user);
+        Boolean UserExists = authService.CheckUserExists(user.getConsumerEmail());
+        if(UserExists){
+            //if user is already present in system return error
+            baseResponse.setStatus(CommonConstants.FAIL);
+            baseResponse.setReasonText("You have already registered with us. Please try to log in");
+            baseResponse.setReasonCode("400");
 
-        //Save Authentication Detail
-        BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
-        
-        //create AuthenticationEntity Object
-        AuthenticationEntity authenticationEntity = new AuthenticationEntity();
-        authenticationEntity.setName(user.getConsumerName());
-        authenticationEntity.setEmail(user.getConsumerEmail());
-        authenticationEntity.setMobile(user.getConsumerPhone());
-        authenticationEntity.setPassword(user.getConsumerPassword());
-        authenticationEntity.setActive(true);
-        authenticationEntity.setRole("consumer");
-        authenticationEntity.setConsumerId(user.getId());
-        
-        authentication = authService.saveAuthenticationDetail(request,authenticationEntity);
+            return baseResponse;
 
-        //Send Mail
-        Notification notification = new Notification();
-        notification.setToMail(user.getConsumerEmail());
-        notification.setUserName(user.getConsumerName());
-        notification.setBccmail(CommonConstants.BCC_MAIL);
-        notification.setSubject(CommonConstants.CUSTOMER_REGISTRATION_SUBJECT);
-        String MailBody = CommonConstants.CUSTOMER_REGISTRATION_BODY + "Login with following Detail \n\n "+ "UserName: "+user.getConsumerEmail()+"\n\n password: "+ user.getConsumerPassword();
-        notification.setBody(MailBody);
-        notificationContoller.saveNotification(request,notification);
+        }else {
+            user = repository.save(user);
 
-        // Set BaseResponse
-        baseResponse.setResponseObject(user);
-        baseResponse.setStatus(CommonConstants.SUCCESS);
-        baseResponse.setReasonText("Consumer Registration Successful");
-        baseResponse.setReasonCode("200");
+            //Save Authentication Detail
+            BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
 
-        return baseResponse;
+            //create AuthenticationEntity Object
+            AuthenticationEntity authenticationEntity = new AuthenticationEntity();
+            authenticationEntity.setName(user.getConsumerName());
+            authenticationEntity.setEmail(user.getConsumerEmail());
+            authenticationEntity.setMobile(user.getConsumerPhone());
+            authenticationEntity.setPassword(user.getConsumerPassword());
+            authenticationEntity.setActive(true);
+            authenticationEntity.setRole("consumer");
+            authenticationEntity.setConsumerId(user.getId());
+
+            authentication = authService.saveAuthenticationDetail(request, authenticationEntity);
+
+            //Send Mail
+            Notification notification = new Notification();
+            notification.setToMail(user.getConsumerEmail());
+            notification.setUserName(user.getConsumerName());
+            notification.setBccmail(CommonConstants.BCC_MAIL);
+            notification.setSubject(CommonConstants.CUSTOMER_REGISTRATION_SUBJECT);
+            String MailBody = CommonConstants.CUSTOMER_REGISTRATION_BODY + "Login with following Detail \n\n " + "UserName: " + user.getConsumerEmail() + "\n\n password: " + user.getConsumerPassword();
+            notification.setBody(MailBody);
+            notificationContoller.saveNotification(request, notification);
+
+            // Set BaseResponse
+            baseResponse.setResponseObject(user);
+            baseResponse.setStatus(CommonConstants.SUCCESS);
+            baseResponse.setReasonText("Consumer Registration Successful");
+            baseResponse.setReasonCode("200");
+
+            return baseResponse;
+        }
 
     }
 }

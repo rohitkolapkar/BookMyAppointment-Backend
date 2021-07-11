@@ -31,43 +31,52 @@ public class ServiceProviderServiceImpl implements ServiceProviderService {
 			ServiceProviderEntity business) {
 		BaseResponse<ServiceProviderEntity> baseResponse = new BaseResponse<>();
 
-		business = spRepository.save(business);
+		Boolean UserExists = authService.CheckUserExists(business.getSpEmail());
+		if(UserExists){
+			//if user is already present in system return error
+			baseResponse.setStatus(CommonConstants.FAIL);
+			baseResponse.setReasonText("You have already registered with us. Please try to log in");
+			baseResponse.setReasonCode("400");
 
-		BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
+			return baseResponse;
 
-		AuthenticationEntity authenticationEntity = new AuthenticationEntity();
-		authenticationEntity.setName(business.getSpName());
-		authenticationEntity.setEmail(business.getSpEmail());
-		authenticationEntity.setMobile(business.getSpPhone());
-		authenticationEntity.setPassword(business.getSpPassword());
-		authenticationEntity.setActive(true);
-		authenticationEntity.setRole("serviceProvider");
-		authenticationEntity.setSpId(business.getSpId());
-		authentication = authService.saveAuthenticationDetail(request, authenticationEntity);
+		}else {
 
-		// Send Mail
-		
-		  Notification notification = new Notification();
-		  notification.setToMail(business.getSpEmail());
-		  notification.setUserName(business.getBusinessName());
-		  notification.setBccmail(CommonConstants.BCC_MAIL);
-		  notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
-		  String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY +
-		  "Login with following Detail \n\n "+
-		  "UserName: "+authentication.getResponseObject().getEmail()+"\n\n password: "+
-		  authentication.getResponseObject().getPassword();
-		  notification.setBody(MailBody);
-		  notificationContoller.saveNotification(request,notification);
-		 
+			business = spRepository.save(business);
+			BaseResponse<AuthenticationEntity> authentication = new BaseResponse<>();
+			AuthenticationEntity authenticationEntity = new AuthenticationEntity();
 
-		// Set BaseResponse
-		baseResponse.setResponseObject(business);
-		baseResponse.setStatus(CommonConstants.SUCCESS);
-		baseResponse.setReasonText("Business Added successfully");
-		baseResponse.setReasonCode("200");
+			authenticationEntity.setName(business.getSpName());
+			authenticationEntity.setEmail(business.getSpEmail());
+			authenticationEntity.setMobile(business.getSpPhone());
+			authenticationEntity.setPassword(business.getSpPassword());
+			authenticationEntity.setActive(true);
+			authenticationEntity.setRole("serviceProvider");
+			authenticationEntity.setSpId(business.getSpId());
+			authentication = authService.saveAuthenticationDetail(request, authenticationEntity);
 
-		return baseResponse;
+			// Send Mail
 
+			Notification notification = new Notification();
+			notification.setToMail(business.getSpEmail());
+			notification.setUserName(business.getBusinessName());
+			notification.setBccmail(CommonConstants.BCC_MAIL);
+			notification.setSubject(CommonConstants.BUSINESS_REGISTRATION_SUBJECT);
+			String MailBody = CommonConstants.BUSINESS_REGISTRATION_BODY +
+					"Login with following Detail \n\n " +
+					"UserName: " + authentication.getResponseObject().getEmail() + "\n\n password: " +
+					authentication.getResponseObject().getPassword();
+			notification.setBody(MailBody);
+			notificationContoller.saveNotification(request, notification);
+
+			// Set BaseResponse
+			baseResponse.setResponseObject(business);
+			baseResponse.setStatus(CommonConstants.SUCCESS);
+			baseResponse.setReasonText("Business Added successfully");
+			baseResponse.setReasonCode("200");
+
+			return baseResponse;
+		}
 	}
 
 	@Override
