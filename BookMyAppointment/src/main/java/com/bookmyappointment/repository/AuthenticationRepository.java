@@ -1,8 +1,9 @@
 package com.bookmyappointment.repository;
 
-import com.bookmyappointment.entity.AuthenticationEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.bookmyappointment.entity.AuthenticationEntity;
 
 
 @Repository

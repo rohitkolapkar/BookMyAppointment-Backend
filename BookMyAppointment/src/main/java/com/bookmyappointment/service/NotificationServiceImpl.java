@@ -1,7 +1,11 @@
 package com.bookmyappointment.service;
 
+import java.util.Properties;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -15,10 +19,6 @@ import com.bookmyappointment.entity.Notification;
 import com.bookmyappointment.repository.NotificationRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
-
-
-import javax.mail.*;
-import java.util.Properties;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {

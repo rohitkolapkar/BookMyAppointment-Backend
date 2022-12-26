@@ -1,15 +1,17 @@
 package com.bookmyappointment.service;
 
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.bookmyappointment.entity.AuthenticationEntity;
 import com.bookmyappointment.entity.Notification;
 import com.bookmyappointment.repository.AuthenticationRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Random;
 
 
 @Service

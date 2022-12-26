@@ -1,19 +1,19 @@
 package com.bookmyappointment.service;
 
-import com.bookmyappointment.controller.NotificationContoller;
-import com.bookmyappointment.entity.AuthenticationEntity;
-import com.bookmyappointment.entity.CityEntity;
-import com.bookmyappointment.entity.ServiceProviderEntity;
-import com.bookmyappointment.entity.Notification;
-import com.bookmyappointment.entity.ServiceCategoryEntity;
-import com.bookmyappointment.util.BaseResponse;
-import com.bookmyappointment.util.CommonConstants;
-import com.bookmyappointment.repository.*;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import com.bookmyappointment.controller.NotificationContoller;
+import com.bookmyappointment.entity.AuthenticationEntity;
+import com.bookmyappointment.entity.Notification;
+import com.bookmyappointment.entity.ServiceProviderEntity;
+import com.bookmyappointment.repository.ServiceProviderRepository;
+import com.bookmyappointment.util.BaseResponse;
+import com.bookmyappointment.util.CommonConstants;
 
 @Service
 public class ServiceProviderServiceImpl implements ServiceProviderService {

@@ -1,7 +1,5 @@
 package com.bookmyappointment.util;
 
-import org.springframework.stereotype.Component;
-
 public class CommonConstants {
 	public static final String FAIL = "fail";
 	public static final String SUCCESS = "success";

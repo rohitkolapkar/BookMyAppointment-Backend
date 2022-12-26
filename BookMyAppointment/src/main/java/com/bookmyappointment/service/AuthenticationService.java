@@ -1,12 +1,11 @@
 package com.bookmyappointment.service;
 
-import com.bookmyappointment.entity.AuthenticationEntity;
-import com.bookmyappointment.entity.ConsumerEntity;
-import com.bookmyappointment.util.BaseResponse;
-import org.springframework.http.ResponseEntity;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
+import com.bookmyappointment.entity.AuthenticationEntity;
+import com.bookmyappointment.util.BaseResponse;
 
 @Service
 public interface AuthenticationService {

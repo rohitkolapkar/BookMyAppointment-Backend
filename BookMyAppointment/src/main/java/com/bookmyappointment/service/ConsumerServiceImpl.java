@@ -1,17 +1,17 @@
 package com.bookmyappointment.service;
 
-import com.bookmyappointment.controller.NotificationContoller;
-import com.bookmyappointment.entity.AuthenticationEntity;
-import com.bookmyappointment.entity.Notification;
-import com.bookmyappointment.entity.ConsumerEntity;
-import com.bookmyappointment.util.BaseResponse;
-import com.bookmyappointment.util.CommonConstants;
-import com.bookmyappointment.repository.*;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import javax.servlet.http.HttpServletRequest;
+import com.bookmyappointment.controller.NotificationContoller;
+import com.bookmyappointment.entity.AuthenticationEntity;
+import com.bookmyappointment.entity.ConsumerEntity;
+import com.bookmyappointment.entity.Notification;
+import com.bookmyappointment.repository.ConsumerRepository;
+import com.bookmyappointment.util.BaseResponse;
+import com.bookmyappointment.util.CommonConstants;
 
 @Service
 public class ConsumerServiceImpl implements  ConsumerService{

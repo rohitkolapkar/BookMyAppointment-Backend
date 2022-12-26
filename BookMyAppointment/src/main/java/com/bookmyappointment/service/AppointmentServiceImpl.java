@@ -1,17 +1,18 @@
 package com.bookmyappointment.service;
 
-import com.bookmyappointment.entity.AppointmentEntity;
-import com.bookmyappointment.entity.ServiceProviderEntity;
-import com.bookmyappointment.repository.AppointmentRepository;
-import com.bookmyappointment.util.BaseResponse;
-import com.bookmyappointment.util.CommonConstants;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bookmyappointment.entity.AppointmentEntity;
+import com.bookmyappointment.repository.AppointmentRepository;
+import com.bookmyappointment.util.BaseResponse;
+import com.bookmyappointment.util.CommonConstants;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
