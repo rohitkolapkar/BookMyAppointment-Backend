@@ -3,13 +3,13 @@ package com.bookmyappointment.service;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Service;
 
 import com.bookmyappointment.entity.AppointmentEntity;
 import com.bookmyappointment.util.BaseResponse;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public interface AppointmentService {

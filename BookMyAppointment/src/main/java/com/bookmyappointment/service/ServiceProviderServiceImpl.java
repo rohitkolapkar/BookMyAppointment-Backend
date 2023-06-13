@@ -2,8 +2,6 @@ package com.bookmyappointment.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +12,8 @@ import com.bookmyappointment.entity.ServiceProviderEntity;
 import com.bookmyappointment.repository.ServiceProviderRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class ServiceProviderServiceImpl implements ServiceProviderService {

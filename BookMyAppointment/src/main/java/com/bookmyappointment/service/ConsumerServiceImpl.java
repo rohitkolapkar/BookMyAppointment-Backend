@@ -1,7 +1,5 @@
 package com.bookmyappointment.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +10,8 @@ import com.bookmyappointment.entity.Notification;
 import com.bookmyappointment.repository.ConsumerRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class ConsumerServiceImpl implements  ConsumerService{

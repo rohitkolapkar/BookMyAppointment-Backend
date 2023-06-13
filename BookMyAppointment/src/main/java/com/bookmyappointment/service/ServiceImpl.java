@@ -2,8 +2,6 @@ package com.bookmyappointment.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +9,8 @@ import com.bookmyappointment.entity.ServiceEntity;
 import com.bookmyappointment.repository.ServiceRepository;
 import com.bookmyappointment.util.BaseResponse;
 import com.bookmyappointment.util.CommonConstants;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class ServiceImpl implements ServicesService {

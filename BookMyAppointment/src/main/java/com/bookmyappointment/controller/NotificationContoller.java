@@ -2,8 +2,6 @@ package com.bookmyappointment.controller;
 
 import java.util.Calendar;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookmyappointment.entity.Notification;
 import com.bookmyappointment.service.NotificationService;
 import com.bookmyappointment.util.BaseResponse;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
